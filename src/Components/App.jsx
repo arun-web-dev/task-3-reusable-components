@@ -14,6 +14,7 @@ class App extends Component {
       searchField: event.target.value,
     });
   };
+  
   render() {
     const filteredRecipe = this.state.recipes.filter((recipe) => {
       return recipe.title
