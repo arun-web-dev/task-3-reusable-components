@@ -2,22 +2,29 @@ import React, { Component } from "react";
 import RecipeList from "./RecipeList";
 import { recipes } from "../API/recipe";
 import SearchBox from "./Searchbox";
-import "./App.css";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      recipes: recipes,
-      searchField: "",
-    };
-  }
+  state = {
+    recipes: recipes,
+    searchField: "",
+  };
+
+  onSearchChange = (event) => {
+    this.setState({
+      searchField: event.target.value,
+    });
+  };
   render() {
+    const filteredRecipe = this.state.recipes.filter((recipe) => {
+      return recipe.title
+        .toLowerCase()
+        .includes(this.state.searchField.toLowerCase());
+    });
     return (
-      <div class="tc sans-serif">
-        <h1>Recipe Finder</h1>
-        <SearchBox />
-        <RecipeList recipes={recipes} />
+      <div className="tc code">
+        <h1 className="f1 ma3 washed-blue">Recipe Finder</h1>
+        <SearchBox searchChange={this.onSearchChange} />
+        <RecipeList recipes={filteredRecipe} />
       </div>
     );
   }

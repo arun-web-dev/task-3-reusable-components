@@ -7,7 +7,7 @@ const Card = ({ image, title, publisher }) => {
         style={{ width: "200px", height: "200px" }}
       />
       <div>
-        <h2>{title}</h2>
+        <h2 className="f4 ma1">{title}</h2>
         <p>{publisher}</p>
       </div>
     </div>
